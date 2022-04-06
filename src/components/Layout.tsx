@@ -15,13 +15,13 @@ const Layout = ({ children }: Props) => {
 
       <header className=''>
         <Link href='/'>
-          <a>Home</a>
+          <a>Header</a>
         </Link>
       </header>
 
       <div className='content'>{children}</div>
 
-      <footer className=''></footer>
+      <footer className=''>Footer</footer>
     </div>
   );
 };

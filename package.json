@@ -2,9 +2,11 @@
   "name": "mynextapp",
   "version": "0.1.0",
   "private": true,
+  "main": "src/firebaseApp.js",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
+    "deploy": "firebase deploy --only functions,hosting",
     "start": "next start",
     "lint": "next lint --dir src",
     "lint:fix": "eslint \"src/**/*.{ts,tsx,js,jsx}\" --fix",
@@ -13,6 +15,8 @@
     "sort": "sort-package-json package.json"
   },
   "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.20.0",
     "next": "12.1.3",
     "react": "18.0.0",
     "react-dom": "18.0.0"
