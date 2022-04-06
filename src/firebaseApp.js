@@ -1,7 +1,12 @@
-import { https, logger } from 'firebase-functions'
-import { default as next } from 'next'
+const {
+  https,
+  logger
+} = require('firebase-functions')
+const {
+  default: next
+} = require('next')
 
-import { distDir as nextjsDistDir } from '../next.config.js'
+const nextjsDistDir = require('../next.config.js').distDir
 
 const nextjsServer = next({
   dev: false,
@@ -11,7 +16,8 @@ const nextjsServer = next({
 })
 const nextjsHandle = nextjsServer.getRequestHandler()
 
-export const nextApp = https.onRequest((req, res) => {
+//Note: The `nextApp` here will be the Firebase Cloud Functions name
+exports.nextApp = https.onRequest((req, res) => {
   return nextjsServer.prepare().then(() => {
     logger.info(req.path, req.query)
     return nextjsHandle(req, res)
